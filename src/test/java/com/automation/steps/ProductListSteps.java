@@ -127,4 +127,9 @@ public class ProductListSteps {
     public void verifyFilterIsAppliedToAllProducts(String filter) {
         Assert.assertTrue(productListPage.isDiscountFilterApplied());
     }
+
+    @When("user clicks on the product")
+    public void userClicksOnTheProduct() {
+//        productListPage.clickProduct();
+    }
 }

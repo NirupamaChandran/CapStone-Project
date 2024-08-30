@@ -18,6 +18,10 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
 
     }
 
+//    @Override
+//    public void clickProduct() {
+//    }
+
     @Override
     public boolean isItemHeadingDisplayed(String configValue) {
         return false;

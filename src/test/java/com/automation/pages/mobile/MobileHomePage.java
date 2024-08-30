@@ -10,14 +10,14 @@ public class MobileHomePage extends MobileBasePage implements HomePage {
     WebElement goToHomePage;
     @FindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
     WebElement denyButton;
-    @FindBy(id = "android:id/button1")
-    WebElement skipNowButton;
+    @FindBy(id = "android:id/button2")
+    WebElement closeAdd;
     @FindBy(className = "android.widget.ImageView")
     WebElement closeButton;
     public void openWebsite(){
         goToHomePage.click();
         denyButton.click();
-        skipNowButton.click();
+        closeAdd.click();
         closeButton.click();
     }
 

@@ -7,6 +7,8 @@ public interface ProductListPage {
 
     void clickFirstProduct();
 
+//    void clickProduct();
+
     boolean isItemHeadingDisplayed(String configValue);
 
     void sortPriceHighToLow();

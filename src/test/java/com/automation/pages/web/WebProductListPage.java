@@ -48,6 +48,30 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
     }
 
 
+//    @FindBy(css = ".ProductDetailsMainCard__productName")
+//    WebElement title;
+//    int count=0;
+//    public void clickProduct() {
+//        for(int i=0;i<priceList.size();i++){
+//            ConfigReader.setConfigValue("product.name", productList.get(i).getText());
+//            javascriptExecutorClick(productList.get(i));
+//            String currentWindow = driver.getWindowHandle();
+//            Set<String> windowHandles = driver.getWindowHandles();
+//            for (String handle : windowHandles) {
+//                if (!handle.equals(currentWindow)) {
+//                    driver.switchTo().window(handle);
+//                }
+//            }
+//            if(title.isDisplayed()){
+//                count++;
+//            }
+//            driver.close();
+//            driver.switchTo().window(currentWindow);
+//        }
+//        System.out.println(count);
+//    }
+
+
     @FindBy(className = "Plp__camelCase")
     WebElement headsetPageHeading;
 
