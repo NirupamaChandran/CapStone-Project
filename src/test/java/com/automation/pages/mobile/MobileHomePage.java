@@ -16,14 +16,13 @@ public class MobileHomePage extends MobileBasePage implements HomePage {
     WebElement closeButton;
     public void openWebsite(){
         goToHomePage.click();
-        denyButton.click();
-        closeAdd.click();
-        closeButton.click();
     }
 
     @Override
     public void closePopUp() {
-
+        denyButton.click();
+        closeAdd.click();
+        closeButton.click();
     }
 
     @Override
