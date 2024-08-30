@@ -1,11 +1,21 @@
 package com.automation.pages.mobile;
 
 import com.automation.pages.interfaces.ProductListPage;
+import com.automation.utils.ConfigReader;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class MobileProductListPage extends MobileBasePage implements ProductListPage {
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Sort']")
+    WebElement sortButton;
+    @FindBy(id = "com.tul.tatacliq:id/textViewRefine")
+    WebElement filterButton;
     @Override
     public boolean isProductListPageDisplayed() {
-        return false;
+        return isDisplayed(sortButton) && isDisplayed(filterButton);
     }
 
     @Override
@@ -13,18 +23,25 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
         return false;
     }
 
+
+    @FindBy(xpath = "//android.widget.LinearLayout/android.widget.RelativeLayout/following-sibling::android.widget.LinearLayout/android.widget.TextView[2]")
+    List<WebElement> titleList;
     @Override
     public void clickFirstProduct() {
-
+        ConfigReader.setConfigValue("product.name",titleList.get(0).getText());
+        titleList.get(0).click();
     }
 
 //    @Override
 //    public void clickProduct() {
 //    }
 
+
+    @FindBy(id = "com.tul.tatacliq:id/toolbar_icon_title")
+    WebElement heading;
     @Override
     public boolean isItemHeadingDisplayed(String configValue) {
-        return false;
+        return isDisplayed(heading);
     }
 
     @Override

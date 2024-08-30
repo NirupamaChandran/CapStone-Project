@@ -1,7 +1,6 @@
 package com.automation.pages.mobile;
 
 import com.automation.pages.interfaces.HomePage;
-import com.automation.utils.ConfigReader;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -51,7 +50,7 @@ public class MobileHomePage extends MobileBasePage implements HomePage {
     @Override
     public void searchItem(String key) {
         searchBox.click();
-        searchInput.sendKeys(ConfigReader.getConfigValue(key));
+        searchInput.sendKeys(key);
         Actions actions = new Actions(driver);
         actions.keyDown(Keys.ENTER).pause(1000).keyUp(Keys.ENTER).build().perform();
     }
