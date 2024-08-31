@@ -1,6 +1,7 @@
 package com.automation.pages.web;
 
 import com.automation.pages.interfaces.CartPage;
+import com.automation.utils.ConfigReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -79,6 +80,8 @@ public class WebCartPage extends WebBasePage implements CartPage {
     @FindBy(xpath = "//div[@class='DesktopCheckout__price']")
     WebElement totalAmount;
 
+    double actualTotal = 0;
+
     public boolean calculateTotal() {
         double expectedTotal = 0;
         for (WebElement price : productPrice) {
@@ -87,8 +90,34 @@ public class WebCartPage extends WebBasePage implements CartPage {
         }
         double processingFee = Double.parseDouble(processingPrice.getText().split("₹")[2]);
         expectedTotal += processingFee;
-        double actualTotal = Double.parseDouble(totalAmount.getText().substring(1));
+        actualTotal = Double.parseDouble(totalAmount.getText().substring(1));
+        ConfigReader.setConfigValue("total.price", String.valueOf(actualTotal));
         return expectedTotal == actualTotal;
+    }
+
+    @FindBy(className = "Coupon__headingText")
+    WebElement couponMenu;
+    public void clickCheckForCoupons(){
+        couponMenu.click();
+    }
+
+    @FindBy(css = ".CuponDetails__applyCoupon")
+    List<WebElement> couponList;
+    @FindBy(className = "CuponDetails__dataInformation")
+    List<WebElement> couponAmountList;
+    public void applyCoupon(){
+        double price = Double.parseDouble(couponAmountList.get(0).getText().substring(1));
+        ConfigReader.setConfigValue("coupon.amount", String.valueOf(price));
+        couponList.get(0).click();
+    }
+
+    @FindBy(xpath = "//span[text()='Hurray! Thanks!']")
+    WebElement successMsg;
+    @FindBy(css = ".DesktopCheckout__price")
+    WebElement totalPrice;
+    public boolean isCouponApplied(){
+        double total = Double.parseDouble(totalPrice.getText().substring(2));
+        return successMsg.isDisplayed() && total == actualTotal - Double.parseDouble(ConfigReader.getConfigValue("coupon.amount"));
     }
 }
 

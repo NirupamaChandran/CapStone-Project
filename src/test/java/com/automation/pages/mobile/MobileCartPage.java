@@ -46,4 +46,19 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
         return false;
 
     }
+
+    @Override
+    public void clickCheckForCoupons() {
+
+    }
+
+    @Override
+    public void applyCoupon() {
+
+    }
+
+    @Override
+    public boolean isCouponApplied() {
+        return false;
+    }
 }

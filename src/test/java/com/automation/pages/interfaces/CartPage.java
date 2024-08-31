@@ -16,4 +16,10 @@ public interface CartPage {
     String cartProductTitle();
 
     boolean calculateTotal();
+
+    void clickCheckForCoupons();
+
+    void applyCoupon();
+
+    boolean isCouponApplied();
 }

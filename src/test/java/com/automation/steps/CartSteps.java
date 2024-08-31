@@ -64,4 +64,19 @@ public class CartSteps {
     @When("user increase quantity then verify")
     public void userIncreaseQuantityThenVerify() {
     }
+
+    @When("user clicks check for coupons")
+    public void userClicksCheckForCoupons() {
+        cartPage.clickCheckForCoupons();
+    }
+
+    @And("apply a coupon")
+    public void applyACoupon() {
+        cartPage.applyCoupon();
+    }
+
+    @Then("verify coupon amount is reduced from total amount")
+    public void verifyCouponAmountIsReducedFromTotalAmount() {
+        cartPage.isCouponApplied();
+    }
 }

@@ -32,3 +32,8 @@ Feature: Validate cart page functionalities
     And verify the total amount is correct
     When user increase quantity then verify
     And verify the total amount is correct
+
+  Scenario: Verify user can apply coupon
+    When user clicks check for coupons
+    And apply a coupon
+    Then verify coupon amount is reduced from total amount
