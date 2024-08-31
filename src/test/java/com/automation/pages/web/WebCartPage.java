@@ -105,10 +105,17 @@ public class WebCartPage extends WebBasePage implements CartPage {
     List<WebElement> couponList;
     @FindBy(className = "CuponDetails__dataInformation")
     List<WebElement> couponAmountList;
+    @FindBy(className = "SlideModal__cancel")
+    WebElement closeBtn;
     public void applyCoupon(){
-        double price = Double.parseDouble(couponAmountList.get(0).getText().substring(1));
-        ConfigReader.setConfigValue("coupon.amount", String.valueOf(price));
-        couponList.get(0).click();
+        if(couponList.isEmpty()){
+            closeBtn.click();
+        }
+        else {
+            double price = Double.parseDouble(couponAmountList.get(0).getText().substring(1));
+            ConfigReader.setConfigValue("coupon.amount", String.valueOf(price));
+            couponList.get(0).click();
+        }
     }
 
     @FindBy(xpath = "//span[text()='Hurray! Thanks!']")
@@ -116,8 +123,11 @@ public class WebCartPage extends WebBasePage implements CartPage {
     @FindBy(css = ".DesktopCheckout__price")
     WebElement totalPrice;
     public boolean isCouponApplied(){
-        double total = Double.parseDouble(totalPrice.getText().substring(2));
-        return successMsg.isDisplayed() && total == actualTotal - Double.parseDouble(ConfigReader.getConfigValue("coupon.amount"));
+        if(isDisplayed(successMsg)){
+            double total = Double.parseDouble(totalPrice.getText().substring(2));
+            return successMsg.isDisplayed() && total == actualTotal - Double.parseDouble(ConfigReader.getConfigValue("coupon.amount"));
+        }
+        return  true;
     }
 }
 

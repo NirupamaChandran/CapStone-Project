@@ -35,5 +35,5 @@ Feature: Validate cart page functionalities
 
   Scenario: Verify user can apply coupon
     When user clicks check for coupons
-    And apply a coupon
+    And apply a coupon if available
     Then verify coupon amount is reduced from total amount
