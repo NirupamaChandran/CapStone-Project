@@ -2,6 +2,7 @@ package com.automation.pages.mobile;
 
 import com.automation.pages.interfaces.ProductListPage;
 import com.automation.utils.ConfigReader;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -59,14 +60,26 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
         return false;
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/searchEditText")
+    WebElement brandInput;
+    @FindBy(id = "com.tul.tatacliq:id/textViewFilterValueName")
+    WebElement searchResult;
+    @FindBy(id = "com.tul.tatacliq:id/txtShowResults")
+    WebElement showResult;
     @Override
-    public void addBrandFilter(String configValue, String filterType) {
-
+    public void addBrandFilter(String filter, String filterType) {
+        filterButton.click();
+        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.tul.tatacliq:id/txtFilterKey' and @text='"+filterType+"']")).click();
+        brandInput.sendKeys(filter);
+        searchResult.click();
+        showResult.click();
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/appCompatTextView2")
+    WebElement giveFeedback;
     @Override
     public boolean isBrandFilterApplied(String configValue) {
-        return false;
+
     }
 
     @Override
