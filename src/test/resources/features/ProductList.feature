@@ -6,6 +6,7 @@ Feature: Validate product list page functionalities
     When user search an item "search.item" in search bar
     Then verify "search.item" listing page is displayed
 
+  @Web
   Scenario: Verify user can give feedback
     When user clicks give feedback button
     Then verify feedback form is displayed

@@ -26,8 +26,13 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
 
     @FindBy(xpath = "//android.widget.LinearLayout/android.widget.RelativeLayout/following-sibling::android.widget.LinearLayout/android.widget.TextView[2]")
     List<WebElement> titleList;
+    @FindBy(id = "com.tul.tatacliq:id/llGridListView")
+    WebElement viewButton;
     @Override
     public void clickFirstProduct() {
+        if(isDisplayed(viewButton)){
+            viewButton.click();
+        }
         ConfigReader.setConfigValue("product.name",titleList.get(0).getText());
         titleList.get(0).click();
     }
