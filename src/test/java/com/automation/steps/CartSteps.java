@@ -70,7 +70,7 @@ public class CartSteps {
         cartPage.clickCheckForCoupons();
     }
 
-    @And("apply a coupon")
+    @And("apply a coupon if available")
     public void applyACoupon() {
         cartPage.applyCoupon();
     }
@@ -79,4 +79,5 @@ public class CartSteps {
     public void verifyCouponAmountIsReducedFromTotalAmount() {
         cartPage.isCouponApplied();
     }
+
 }
