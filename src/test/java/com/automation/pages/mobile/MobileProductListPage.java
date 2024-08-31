@@ -3,9 +3,12 @@ package com.automation.pages.mobile;
 import com.automation.pages.interfaces.ProductListPage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MobileProductListPage extends MobileBasePage implements ProductListPage {
@@ -31,10 +34,10 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
     WebElement viewButton;
     @Override
     public void clickFirstProduct() {
-        if(isDisplayed(viewButton)){
+        if (isDisplayed(viewButton)) {
             viewButton.click();
         }
-        ConfigReader.setConfigValue("product.name",titleList.get(0).getText());
+        ConfigReader.setConfigValue("product.name", titleList.get(0).getText());
         titleList.get(0).click();
     }
 
@@ -50,14 +53,51 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
         return isDisplayed(heading);
     }
 
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Price High to Low']")
+    WebElement highToLow;
+
     @Override
     public void sortPriceHighToLow() {
-
+        sortButton.click();
+        highToLow.click();
     }
+
+
+    @FindBy(id = "com.tul.tatacliq:id/emptyText")
+    WebElement productListEnd;
+    @FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.tul.tatacliq:id/linearLayoutPriceInfo']/android.widget.TextView[1]")
+    List<WebElement> priceList;
 
     @Override
     public boolean isPriceHighToLowSorted() {
-        return false;
+        int i = 0;
+
+        //Scroll Logic
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        do {
+            List<Double> newPriceList = new ArrayList<>();
+            for (WebElement price : priceList) {
+                newPriceList.add(Double.parseDouble(price.getText().substring(1).replace(",", "")));
+            }
+            List<Double> copyPriceList = new ArrayList<>(newPriceList);
+            Collections.sort(copyPriceList);
+            Collections.reverse(copyPriceList);
+
+            if (!newPriceList.equals(copyPriceList)) {
+                return false;
+            }
+
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
+
+            i++;
+
+        } while (i <= 5);
+
+        return true;
     }
 
     @FindBy(id = "com.tul.tatacliq:id/searchEditText")
@@ -79,7 +119,7 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
     WebElement giveFeedback;
     @Override
     public boolean isBrandFilterApplied(String configValue) {
-
+        return false;
     }
 
     @Override
