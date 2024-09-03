@@ -136,7 +136,7 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
             }
             scrollOrSwipe(width / 2, height / 2, width / 2, 0);
 
-        }while(!isDisplayed(giveFeedback));
+        }while(!isPresent(giveFeedback));
         return true;
 
     }
