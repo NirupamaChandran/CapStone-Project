@@ -18,12 +18,19 @@ public class MobileHomePage extends MobileBasePage implements HomePage {
     WebElement denyButton;
     @FindBy(id = "android:id/button2")
     WebElement closeAdd;
+    @FindBy(id = "android:id/button1")
+    WebElement skipNowBtn;
     @FindBy(className = "android.widget.ImageView")
     WebElement closeButton;
     @Override
     public void closePopUp() {
         denyButton.click();
-        closeAdd.click();
+        if(isDisplayed(skipNowBtn)){
+            skipNowBtn.click();
+        }
+        if(isDisplayed(closeAdd)){
+            closeAdd.click();
+        }
         closeButton.click();
     }
 

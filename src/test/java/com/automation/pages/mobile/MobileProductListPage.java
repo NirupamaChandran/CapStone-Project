@@ -117,9 +117,28 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
 
     @FindBy(id = "com.tul.tatacliq:id/appCompatTextView2")
     WebElement giveFeedback;
+    @FindBy(xpath = "//android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")
+    List<WebElement> brandHeading;
     @Override
-    public boolean isBrandFilterApplied(String configValue) {
-        return false;
+    public boolean isBrandFilterApplied(String filterBrand) {
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+        do{
+            List<String> brandList = new ArrayList<>();
+            for(WebElement brand : brandHeading){
+                brandList.add(brand.getText());
+            }
+            for(String brandName : brandList){
+                if(!brandName.equals(filterBrand)){
+                    return false;
+                }
+            }
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
+
+        }while(!isDisplayed(giveFeedback));
+        return true;
+
     }
 
     @Override
