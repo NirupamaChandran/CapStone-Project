@@ -71,14 +71,15 @@ public class MobileProductDetailPage extends MobileBasePage implements ProductDe
 
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/imgVSimilarProd")
+    WebElement similarProducts;
     @Override
     public void clickSimilarProductsIcon() {
-
+        similarProducts.click();
     }
 
     @Override
     public void clickViewAllProducts() {
-
     }
 
     @FindBy(xpath = " //android.widget.Toast[@text='This item has been added to My Bag']")

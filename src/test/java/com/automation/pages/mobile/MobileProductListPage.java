@@ -151,9 +151,11 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
         return false;
     }
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Similar Products']")
+    WebElement similarProductHeader;
     @Override
     public boolean isSimilarProductsDisplayed() {
-        return false;
+        return similarProductHeader.isDisplayed();
     }
 
     @Override
