@@ -32,6 +32,21 @@ public class MobileBasePage {
         }
     }
 
+    public void setImplicitWait(long sec){
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(sec));
+    }
+
+    public boolean isPresent(WebElement element) {
+        try {
+            setImplicitWait(0);
+            return element.isDisplayed();
+        } catch (Exception var3) {
+            return false;
+        }finally {
+            setImplicitWait(20);
+        }
+    }
+
     public void scrollOrSwipe(int startX,int startY,int endX,int endY){
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH,"finger1");
         Sequence sequence = new Sequence(finger1, 1)
