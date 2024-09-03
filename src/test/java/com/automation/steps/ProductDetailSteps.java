@@ -74,8 +74,14 @@ public class ProductDetailSteps {
     }
 
 
-    @Then("verify text {string} is displayed")
-    public void verifyTextIsDisplayed(String text) {
-        Assert.assertEquals(text, productDetailPage.isSuccessMsgDisplayed());
+    @Then("verify success message is displayed")
+    public void verifyTextIsDisplayed() {
+        String message;
+        if (ConfigReader.getConfigValue("platform").equals("Web")) {
+            message = ConfigReader.getConfigValue("web.success");
+        } else {
+            message = ConfigReader.getConfigValue("mobile.success");
+        }
+        Assert.assertEquals(message, productDetailPage.isSuccessMsgDisplayed());
     }
 }

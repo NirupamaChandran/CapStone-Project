@@ -38,7 +38,6 @@ public class WebProductDetailPage extends WebBasePage implements ProductDetailPa
 
     public void selectSize(String key) {
         ConfigReader.setConfigValue(key, sizeList.get(0).getText());
-//        sizeList.get(0).click();
         javascriptExecutorClick(sizeList.get(0));
     }
 

@@ -181,14 +181,44 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
         return "";
     }
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Price Low to High']")
+    WebElement lowToHigh;
     @Override
     public void sortPriceLowToHigh() {
-
+        sortButton.click();
+        lowToHigh.click();
     }
+
 
     @Override
     public boolean isPriceLowToHighSorted() {
-        return false;
+        int i = 0;
+
+        //Scroll Logic
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        do {
+            List<Double> newPriceList = new ArrayList<>();
+            for (WebElement price : priceList) {
+                newPriceList.add(Double.parseDouble(price.getText().substring(1).replace(",", "")));
+            }
+            List<Double> copyPriceList = new ArrayList<>(newPriceList);
+            Collections.reverse(copyPriceList);
+            Collections.sort(copyPriceList);
+
+            if (!newPriceList.equals(copyPriceList)) {
+                return false;
+            }
+
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
+
+            i++;
+
+        } while (i <= 5);
+
+        return true;
     }
 
     @Override
