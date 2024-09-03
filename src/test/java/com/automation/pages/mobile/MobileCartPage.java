@@ -1,6 +1,8 @@
 package com.automation.pages.mobile;
 
 import com.automation.pages.interfaces.CartPage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class MobileCartPage extends MobileBasePage implements CartPage {
 
@@ -15,9 +17,12 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
         return false;
     }
 
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title'" +
+            "]")
+    WebElement myBagHeader;
     @Override
     public boolean isCartPageDisplayed() {
-        return false;
+        return myBagHeader.isDisplayed();
     }
 
     @Override
@@ -35,9 +40,11 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
 
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/text_view_my_bag_product_name")
+    WebElement title;
     @Override
     public String cartProductTitle() {
-        return "";
+        return title.getText();
     }
 
     @Override

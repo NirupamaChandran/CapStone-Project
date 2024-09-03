@@ -9,7 +9,7 @@ Feature: Validate cart page functionalities
     Then verify whether product detail page is displayed
     And user selects size "item.size" of the product
     And user clicks add to cart button
-    Then verify text "The item has been added to your bag" is displayed
+    Then verify success message is displayed
     And verify cart count is "1"
     And user click cart icon
     Then verify user is on cart page
