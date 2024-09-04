@@ -49,7 +49,7 @@ public class MobileProductDetailPage extends MobileBasePage implements ProductDe
         int width = dimension.getWidth();
         int height = dimension.getHeight();
 
-        while (!isDisplayed(offers)){
+        while (!isPresent(offers)){
             scrollOrSwipe(width / 2, height / 2, width / 2, 0);
         }
 

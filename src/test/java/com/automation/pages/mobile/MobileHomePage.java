@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class MobileHomePage extends MobileBasePage implements HomePage {
 
-    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[2]")
+    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[1]")
     WebElement goToHomePage;
     public void openWebsite(){
         goToHomePage.click();

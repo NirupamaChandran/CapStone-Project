@@ -42,7 +42,6 @@ public class WebHomePage extends WebBasePage implements HomePage {
 
     @Override
     public boolean isHomePageDisplayed() {
-
         return bannerBase.isDisplayed();
     }
 
