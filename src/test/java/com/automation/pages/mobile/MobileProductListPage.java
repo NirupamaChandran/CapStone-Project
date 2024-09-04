@@ -110,8 +110,13 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
     public void addBrandFilter(String filter, String filterType) {
         filterButton.click();
         driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.tul.tatacliq:id/txtFilterKey' and @text='"+filterType+"']")).click();
-        brandInput.sendKeys(filter);
-        searchResult.click();
+        if(isDisplayed(brandInput)) {
+            brandInput.sendKeys(filter);
+            searchResult.click();
+        }
+        else{
+            driver.findElement(By.xpath("//android.widget.TextView[@text='"+filter+"']")).click();
+        }
         showResult.click();
     }
 
@@ -233,8 +238,22 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
         return false;
     }
 
+    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.tul.tatacliq:id/text_discount\"]")
+    List<WebElement> discountList;
     @Override
     public boolean isDiscountFilterApplied() {
-        return false;
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+        do {
+            for (WebElement discount : discountList) {
+                int value = Integer.parseInt(discount.getText().substring(0, 2));
+                if (value < 50 || value > 70) {
+                    return false;
+                }
+            }
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
+        }while(!isPresent(giveFeedback));
+        return true;
     }
 }
