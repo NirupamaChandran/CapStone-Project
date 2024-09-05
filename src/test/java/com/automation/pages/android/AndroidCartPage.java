@@ -1,4 +1,4 @@
-package com.automation.pages.mobile;
+package com.automation.pages.android;
 
 import com.automation.pages.interfaces.CartPage;
 import com.automation.utils.ConfigReader;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MobileCartPage extends MobileBasePage implements CartPage {
+public class AndroidCartPage extends AndroidBasePage implements CartPage {
 
     @FindBy(id = "com.tul.tatacliq:id/text_size")
     WebElement changeSizeDropdown;

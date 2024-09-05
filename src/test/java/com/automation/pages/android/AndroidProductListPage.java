@@ -1,4 +1,4 @@
-package com.automation.pages.mobile;
+package com.automation.pages.android;
 
 import com.automation.pages.interfaces.ProductListPage;
 import com.automation.utils.ConfigReader;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MobileProductListPage extends MobileBasePage implements ProductListPage {
+public class AndroidProductListPage extends AndroidBasePage implements ProductListPage {
 
     @FindBy(xpath = "//android.widget.TextView[@text='Sort']")
     WebElement sortButton;

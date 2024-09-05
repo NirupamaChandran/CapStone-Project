@@ -1,4 +1,4 @@
-package com.automation.pages.mobile;
+package com.automation.pages.android;
 
 import com.automation.pages.interfaces.ProductDetailPage;
 import com.automation.utils.ConfigReader;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MobileProductDetailPage extends MobileBasePage implements ProductDetailPage {
+public class AndroidProductDetailPage extends AndroidBasePage implements ProductDetailPage {
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc='Product Name']")
     WebElement title;
