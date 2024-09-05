@@ -18,7 +18,7 @@ Feature: Validate product detail page functionalities
     When user clicks visit store button
     Then verify whether product "brand.name" list page is displayed
 
-  @web
+  @web@mobile
   Scenario: Verify user can view similar products
     When user clicks similar products icon from product image
     And click view all products button
