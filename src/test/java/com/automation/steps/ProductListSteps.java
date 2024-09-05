@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class ProductListSteps {
+
     ProductListPage productListPage;
 
     public ProductListSteps() {

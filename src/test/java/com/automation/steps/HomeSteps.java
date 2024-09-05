@@ -8,6 +8,7 @@ import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 public class HomeSteps {
+
     HomePage homePage;
 
     public HomeSteps() {

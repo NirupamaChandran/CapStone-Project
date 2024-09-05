@@ -16,7 +16,7 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
     List<WebElement> sizeChange;
     @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[2]/android.view.View[4]/android.view.View")
     List<WebElement> quantityChange;
-    @FindBy(xpath = "//android.widget.TextView[@text=\"Done\"]")
+    @FindBy(xpath = "//android.widget.TextView[@text='Done']")
     WebElement doneButton;
     int flag =0;
     @Override
