@@ -16,7 +16,7 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
     List<WebElement> sizeChange;
     @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[2]/android.view.View[4]/android.view.View")
     List<WebElement> quantityChange;
-    @FindBy(xpath = "//android.widget.TextView[@text=\"Done\"]")
+    @FindBy(xpath = "//android.widget.TextView[@text='Done']")
     WebElement doneButton;
     int flag =0;
     @Override
@@ -31,6 +31,16 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
     }
 
     public void changeQuantity() throws InterruptedException {
+
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+
+        while (!isPresent(changeSizeDropdown)){
+            scrollOrSwipe(width/2, height/2, width/2, height);
+        }
+
         changeSizeDropdown.click();
         if(quantityChange.get(1).isEnabled()) {
             quantityChange.get(1).click();
@@ -54,8 +64,7 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         return true;
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title'" +
-            "]")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title'" + "]")
     WebElement myBagHeader;
     @Override
     public boolean isCartPageDisplayed() {
@@ -85,17 +94,46 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
     }
 
 
+    @FindBy(xpath = "//androidx.cardview.widget.CardView[@resource-id='com.tul.tatacliq:id/cart_disclaimer_view']/android.widget.RelativeLayout")
+    WebElement pageEnd;
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/text_view_my_bag_product_offer_price']")
+    List<WebElement> productPrice;
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/processingValue']")
+    WebElement processingPrice;
+    @FindBy(xpath = "//android.widget.TextView[@text='Total Payable']/following-sibling::android.widget.TextView")
+    WebElement totalPayable;
+
+    double actualTotal = 0;
+
     @Override
     public boolean calculateTotal() {
 
-        return false;
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        double expectedTotal = 0;
+        for (WebElement price : productPrice) {
+            double itemPrice = Double.parseDouble(price.getText().substring(1));
+            System.out.println(itemPrice+"item price==========");
+            expectedTotal += itemPrice;
+        }
+
+        while (!isPresent(pageEnd)){
+            scrollOrSwipe(width/2, height/2, width/2, 0);
+        }
+
+        double processingFee = Double.parseDouble(processingPrice.getText().substring(1));
+        expectedTotal += processingFee;
+        actualTotal = Double.parseDouble(totalPayable.getText().substring(1));
+        ConfigReader.setConfigValue("total.price", String.valueOf(actualTotal));
+        System.out.println(expectedTotal + "================================");
+        System.out.println(actualTotal + "================================");
+        return expectedTotal == actualTotal;
 
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@text='Total Payable']/following-sibling::android.widget.TextView")
-    WebElement totalPayable;
-    @FindBy(xpath = "//android.widget.TextView[@text='Price Details']")
-    WebElement priceDetails;
+
     @FindBy(xpath = "//android.widget.TextView[@text='Check for coupon']")
     WebElement checkForCouponBtn;
     @Override
@@ -105,7 +143,7 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         int width = dimension.getWidth();
         int height = dimension.getHeight();
 
-        while (!isPresent(priceDetails)){
+        while (!isPresent(pageEnd)){
             scrollOrSwipe(width/2, height/2, width/2, 0);
         }
 

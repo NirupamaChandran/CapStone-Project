@@ -63,17 +63,17 @@ public class WebHomePage extends WebBasePage implements HomePage {
 
     @FindBy(xpath = "//div[@class='DesktopHeader__categoryAndBrand' and text()='Categories']")
     WebElement categoryMenu;
-    @FindBy(xpath = "//div[text()=\"Men's Fashion\"]")
+    @FindBy(xpath = "//div[@class='DesktopHeader__categoryDetailsValueWithArrow']/following-sibling::div[1]")
     WebElement mensFashionOption;
-    @FindBy(xpath = "//a[text()='Shirts']")
-    WebElement shirtsLink;
+    @FindBy(xpath = "//a[text()='T-shirts']")
+    WebElement tShirtsLink;
 
     @Override
     public void searchCategory() {
         Actions actions = new Actions(driver);
         actions.moveToElement(categoryMenu).pause(1000).build().perform();
         actions.moveToElement(mensFashionOption).pause(1000).build().perform();
-        actions.click(shirtsLink).build().perform();
+        actions.click(tShirtsLink).build().perform();
     }
 
 

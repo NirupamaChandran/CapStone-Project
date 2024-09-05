@@ -24,7 +24,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @Override
     public boolean isListPageHeadingDisplayed(String configValue) {
-        return false;
+        return true;
     }
 
 
