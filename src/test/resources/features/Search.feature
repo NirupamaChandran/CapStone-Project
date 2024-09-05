@@ -2,7 +2,7 @@ Feature: Validate search functionalities
 
   Background:
     Given user opens website
-    Then verify user is on homepage  i
+    Then verify user is on homepage
 
   @web @mobile
   Scenario: Verify user can search an item

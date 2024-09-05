@@ -148,7 +148,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @Override
     public void changeView() {
-
+        viewButton.click();
     }
 
     @Override
