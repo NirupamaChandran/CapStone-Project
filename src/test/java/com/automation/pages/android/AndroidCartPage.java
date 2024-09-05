@@ -71,14 +71,18 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         return isDisplayed(myBagHeader);
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/text_view_remove_product")
+    WebElement removeButton;
     @Override
     public void removeItem() {
-
+        removeButton.click();
     }
 
+    @FindBy(xpath = "//android.widget.LinearLayout[@resource-id=\"com.tul.tatacliq:id/emptyCartLayoutNew\"]/android.widget.TextView[1]")
+    WebElement cartMessage;
     @Override
     public boolean isItemRemoved() {
-        return false;
+        return cartMessage.getText().equals("Your shopping cart is empty!");
     }
 
     @Override

@@ -23,11 +23,17 @@ Feature: Validate cart page functionalities
     When user changes the size and quantity of the item
     Then verify the size "item.size" and quantity is updated
 
+  @web
   Scenario: Verify user can remove item from the cart
     When user clicks on remove button
     Then verify the item is removed from the cart
     When user clicks continue shopping button
     Then verify user is in home page
+
+  @mobile
+  Scenario: Verify user can remove item from the cart in android
+    When user clicks on remove button
+    Then verify the item is removed from the cart
 
   Scenario: Verify the total amount in cart page
     Then verify cart contain the correct item
