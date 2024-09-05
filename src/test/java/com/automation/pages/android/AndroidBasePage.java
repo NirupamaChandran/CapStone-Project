@@ -1,4 +1,4 @@
-package com.automation.pages.mobile;
+package com.automation.pages.android;
 
 import com.automation.utils.DriverManager;
 import io.appium.java_client.AppiumDriver;
@@ -13,12 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Collections;
 
-public class MobileBasePage {
+public class AndroidBasePage {
 
     WebDriver driver;
     WebDriverWait wait;
 
-    MobileBasePage() {
+    AndroidBasePage() {
         this.driver = DriverManager.getDriver();
         PageFactory.initElements(this.driver, this);
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));

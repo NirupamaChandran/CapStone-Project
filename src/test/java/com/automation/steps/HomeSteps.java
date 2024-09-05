@@ -1,7 +1,7 @@
 package com.automation.steps;
 
 import com.automation.pages.interfaces.HomePage;
-import com.automation.pages.mobile.MobileHomePage;
+import com.automation.pages.android.AndroidHomePage;
 import com.automation.pages.web.WebHomePage;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.*;
@@ -15,7 +15,7 @@ public class HomeSteps {
         if (ConfigReader.getConfigValue("platform").equals("Web")) {
             homePage = new WebHomePage();
         } else {
-            homePage = new MobileHomePage();
+            homePage = new AndroidHomePage();
         }
     }
 

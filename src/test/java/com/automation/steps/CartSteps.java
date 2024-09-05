@@ -1,7 +1,7 @@
 package com.automation.steps;
 
 import com.automation.pages.interfaces.CartPage;
-import com.automation.pages.mobile.MobileCartPage;
+import com.automation.pages.android.AndroidCartPage;
 import com.automation.pages.web.WebCartPage;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
@@ -17,7 +17,7 @@ public class CartSteps {
         if (ConfigReader.getConfigValue("platform").equals("Web")) {
             cartPage = new WebCartPage();
         } else {
-            cartPage = new MobileCartPage();
+            cartPage = new AndroidCartPage();
         }
     }
 

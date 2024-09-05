@@ -1,14 +1,13 @@
-package com.automation.pages.mobile;
+package com.automation.pages.android;
 
 import com.automation.pages.interfaces.HomePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
-public class MobileHomePage extends MobileBasePage implements HomePage {
+public class AndroidHomePage extends AndroidBasePage implements HomePage {
 
     @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[1]")
     WebElement goToHomePage;

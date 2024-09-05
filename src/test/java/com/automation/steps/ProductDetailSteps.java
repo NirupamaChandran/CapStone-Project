@@ -1,7 +1,7 @@
 package com.automation.steps;
 
 import com.automation.pages.interfaces.ProductDetailPage;
-import com.automation.pages.mobile.MobileProductDetailPage;
+import com.automation.pages.android.AndroidProductDetailPage;
 import com.automation.pages.web.WebProductDetailPage;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
@@ -17,7 +17,7 @@ public class ProductDetailSteps {
         if (ConfigReader.getConfigValue("platform").equals("Web")) {
             productDetailPage = new WebProductDetailPage();
         } else {
-            productDetailPage = new MobileProductDetailPage();
+            productDetailPage = new AndroidProductDetailPage();
         }
     }
 
