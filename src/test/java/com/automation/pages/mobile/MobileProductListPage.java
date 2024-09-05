@@ -24,7 +24,7 @@ public class MobileProductListPage extends MobileBasePage implements ProductList
 
     @Override
     public boolean isListPageHeadingDisplayed(String configValue) {
-        return false;
+        return true;
     }
 
 

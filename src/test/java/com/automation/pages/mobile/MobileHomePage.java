@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class MobileHomePage extends MobileBasePage implements HomePage {
 
     @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[1]")
@@ -47,9 +49,20 @@ public class MobileHomePage extends MobileBasePage implements HomePage {
 
     }
 
+    @FindBy(xpath = "//android.widget.FrameLayout[@content-desc='Categories']")
+    WebElement categoryBtn;
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.tul.tatacliq:id/cardCategoryItem']")
+    List<WebElement> categoryList;
+    @FindBy(xpath = "//android.widget.TextView[@text='Casual Wear']")
+    WebElement casualWears;
+    @FindBy(xpath = "//android.widget.TextView[@text='T-shirts']/preceding-sibling::android.widget.FrameLayout")
+    WebElement tShirtBtn;
     @Override
     public void searchCategory() {
-
+        categoryBtn.click();
+        categoryList.get(1).click();
+        casualWears.click();
+        tShirtBtn.click();
     }
 
     @FindBy(xpath = "//android.widget.AutoCompleteTextView[@resource-id='android:id/search_src_text']")

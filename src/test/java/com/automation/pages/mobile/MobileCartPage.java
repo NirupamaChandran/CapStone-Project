@@ -47,8 +47,7 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
         return true;
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title'" +
-            "]")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title'" + "]")
     WebElement myBagHeader;
     @Override
     public boolean isCartPageDisplayed() {
@@ -78,17 +77,43 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
     }
 
 
+    @FindBy(xpath = "//androidx.cardview.widget.CardView[@resource-id='com.tul.tatacliq:id/cart_disclaimer_view']/android.widget.RelativeLayout")
+    WebElement pageEnd;
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/text_view_my_bag_product_offer_price']")
+    List<WebElement> productPrice;
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/processingValue']")
+    WebElement processingPrice;
+    @FindBy(xpath = "//android.widget.TextView[@text='Total Payable']/following-sibling::android.widget.TextView")
+    WebElement totalPayable;
+
+    double actualTotal = 0;
+
     @Override
     public boolean calculateTotal() {
 
-        return false;
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        while (!isPresent(pageEnd)){
+            scrollOrSwipe(width/2, height/2, width/2, 0);
+        }
+
+        double expectedTotal = 0;
+        for (WebElement price : productPrice) {
+            double itemPrice = Double.parseDouble(price.getText().substring(1));
+            expectedTotal += itemPrice;
+        }
+
+        double processingFee = Double.parseDouble(processingPrice.getText().split("₹")[2]);
+        expectedTotal += processingFee;
+        actualTotal = Double.parseDouble(totalPayable.getText().substring(1));
+        ConfigReader.setConfigValue("total.price", String.valueOf(actualTotal));
+        return expectedTotal == actualTotal;
 
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@text='Total Payable']/following-sibling::android.widget.TextView")
-    WebElement totalPayable;
-    @FindBy(xpath = "//android.widget.TextView[@text='Price Details']")
-    WebElement priceDetails;
+
     @FindBy(xpath = "//android.widget.TextView[@text='Check for coupon']")
     WebElement checkForCouponBtn;
     @Override
@@ -98,7 +123,7 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
         int width = dimension.getWidth();
         int height = dimension.getHeight();
 
-        while (!isPresent(priceDetails)){
+        while (!isPresent(pageEnd)){
             scrollOrSwipe(width/2, height/2, width/2, 0);
         }
 
