@@ -32,9 +32,15 @@ public class WebCartPage extends WebBasePage implements CartPage {
     @FindBy(xpath = "//span[text()='Done']/parent::div")
     WebElement doneButton;
 
-    public void changeSizeAndQuantity() throws InterruptedException {
+    public void changeSize() throws InterruptedException {
         sizeAndQuantity.click();
         sizeSelectList.get(0).click();
+        doneButton.click();
+        Thread.sleep(3000);
+    }
+
+    public void changeQuantity() throws InterruptedException{
+        sizeAndQuantity.click();
         quantitySelect.click();
         doneButton.click();
         Thread.sleep(3000);
@@ -129,5 +135,7 @@ public class WebCartPage extends WebBasePage implements CartPage {
         }
         return  true;
     }
+
+
 }
 

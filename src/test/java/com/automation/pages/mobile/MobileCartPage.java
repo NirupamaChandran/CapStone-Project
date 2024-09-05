@@ -20,11 +20,18 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
     WebElement doneButton;
     int flag =0;
     @Override
-    public void changeSizeAndQuantity() throws InterruptedException {
+    public void changeSize() throws InterruptedException {
         changeSizeDropdown.click();
         if(isPresent(sizeChange.get(1))) {
             sizeChange.get(1).click();
         }
+        doneButton.click();
+        // page loading
+        Thread.sleep(5000);
+    }
+
+    public void changeQuantity() throws InterruptedException {
+        changeSizeDropdown.click();
         if(quantityChange.get(1).isEnabled()) {
             quantityChange.get(1).click();
             flag=1;
@@ -51,7 +58,7 @@ public class MobileCartPage extends MobileBasePage implements CartPage {
     WebElement myBagHeader;
     @Override
     public boolean isCartPageDisplayed() {
-        return myBagHeader.isDisplayed();
+        return isDisplayed(myBagHeader);
     }
 
     @Override
