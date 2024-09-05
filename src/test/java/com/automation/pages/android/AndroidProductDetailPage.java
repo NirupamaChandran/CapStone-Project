@@ -66,8 +66,23 @@ public class AndroidProductDetailPage extends AndroidBasePage implements Product
         return false;
     }
 
+
+    @FindBy(xpath = "//android.view.ViewGroup[@resource-id='com.tul.tatacliq:id/titleLayout']")
+    WebElement styleWithContainer;
+    @FindBy(id = "com.tul.tatacliq:id/tv_visit_store_two")
+    WebElement visitStore;
     @Override
     public void clickVisitStore() {
+
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        while (!isPresent(styleWithContainer)){
+            scrollOrSwipe(width/2, height/2, width/2, 0);
+        }
+
+        visitStore.click();
 
     }
 
