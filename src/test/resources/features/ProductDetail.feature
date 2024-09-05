@@ -13,7 +13,7 @@ Feature: Validate product detail page functionalities
     When user clicks more product info
     Then verify product info is displayed
 
-  @web
+  @web@mobile
   Scenario: Verify user can visit store
     When user clicks visit store button
     Then verify whether product "brand.name" list page is displayed
