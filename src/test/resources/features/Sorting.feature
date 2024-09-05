@@ -6,10 +6,12 @@ Feature: Validate sorting functionality
     When user search an item "search.item" in search bar
     Then verify "search.item" listing page is displayed
 
+  @web@mobile
   Scenario: Verify user can sort price high to low
     And user sort price high to low
     Then verify whether product list is sorted high to low
 
+  @web@mobile
   Scenario: Verify user can sort price low to high
     And user sort price low to high
     Then verify whether product list is sorted low to high

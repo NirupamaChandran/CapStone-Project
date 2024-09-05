@@ -14,9 +14,11 @@ Feature: Validate cart page functionalities
     And user click cart icon
     Then verify user is on cart page
 
+  @web@mobile
   Scenario: Verify user can add an item to cart
     Then verify cart contain the correct item
 
+  @web@mobile
   Scenario: Verify user can alter quantity and size from the cart
     When user changes the size and quantity of the item
     Then verify the size "item.size" and quantity is updated
@@ -30,9 +32,10 @@ Feature: Validate cart page functionalities
   Scenario: Verify the total amount in cart page
     Then verify cart contain the correct item
     And verify the total amount is correct
-    When user increase quantity then verify
+    When user increase quantity of the item
     And verify the total amount is correct
 
+  @web@mobile
   Scenario: Verify user can apply coupon
     When user clicks check for coupons
     And apply a coupon if available

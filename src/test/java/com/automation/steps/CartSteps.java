@@ -28,7 +28,8 @@ public class CartSteps {
 
     @When("user changes the size and quantity of the item")
     public void userChangesTheSizeAndQuantityOfTheItem() throws InterruptedException {
-        cartPage.changeSizeAndQuantity();
+        cartPage.changeSize();
+        cartPage.changeQuantity();
     }
 
     @Then("verify the size {string} and quantity is updated")
@@ -61,8 +62,9 @@ public class CartSteps {
         Assert.assertTrue(cartPage.calculateTotal());
     }
 
-    @When("user increase quantity then verify")
-    public void userIncreaseQuantityThenVerify() {
+    @When("user increase quantity of the item")
+    public void userIncreaseQuantityThenVerify() throws InterruptedException {
+        cartPage.changeQuantity();
     }
 
     @When("user clicks check for coupons")

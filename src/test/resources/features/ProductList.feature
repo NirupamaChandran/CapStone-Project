@@ -6,7 +6,7 @@ Feature: Validate product list page functionalities
     When user search an item "search.item" in search bar
     Then verify "search.item" listing page is displayed
 
-  @Web
+  @web
   Scenario: Verify user can give feedback
     When user clicks give feedback button
     Then verify feedback form is displayed
@@ -14,10 +14,12 @@ Feature: Validate product list page functionalities
     When user enters text and clicks submit
     Then verify "Thank you for sharing your feedback!" is displayed
 
+  @web
   Scenario: Verify user can swipe product images
     When user click right shift arrow
     Then verify image is changing
 
+  @web
   Scenario: Verify user can switch between different views
     When user clicks on the view icon
     Then verify view has changed

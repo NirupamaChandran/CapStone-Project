@@ -38,7 +38,7 @@ public class MobileProductDetailPage extends MobileBasePage implements ProductDe
         cartIcon.click();
     }
 
-    @FindBy(xpath = "//android.widget.TextView/preceding-sibling::android.widget.TextView[contains(@text,' Offers')]")
+    @FindBy(xpath = "//android.widget.TextView/preceding-sibling::android.widget.TextView[contains(@text,'Offers')]")
     WebElement offers;
     @FindBy(id = "com.tul.tatacliq:id/llShape")
     List<WebElement> sizeList;

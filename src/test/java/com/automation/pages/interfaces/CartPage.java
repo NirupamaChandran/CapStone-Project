@@ -1,7 +1,9 @@
 package com.automation.pages.interfaces;
 
 public interface CartPage {
-    void changeSizeAndQuantity() throws InterruptedException;
+    void changeSize() throws InterruptedException;
+
+    void changeQuantity() throws InterruptedException;
 
     boolean verifySizeAndQuantityUpdated(String configValue);
 
