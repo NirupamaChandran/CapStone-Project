@@ -13,7 +13,7 @@ Feature: Validate category and brand search
 
   @web@mobile
   Scenario: Verify user can select category from home page
-    When user select Shirts from Men's fashion in Categories
+    When user select "T-shirts" from Men's fashion in "Categories"
     Then verify whether product "category.name" list page is displayed
     When user clicks on the first product
     Then verify whether product detail page is displayed
