@@ -17,9 +17,15 @@ public class WebProductDetailPage extends WebBasePage implements ProductDetailPa
 
     @FindBy(xpath = "//button[text()='Add To Bag']")
     WebElement addToCartBtn;
-
+    @FindBy(xpath = "//span[text()='ADD TO BAG']")
+    WebElement addToCartBtn2;
     public void clickAddToCart() {
-        addToCartBtn.click();
+        if(isDisplayed(addToCartBtn)){
+            addToCartBtn.click();
+        }
+        else {
+            addToCartBtn2.click();
+        }
     }
 
     @FindBy(css = ".DesktopHeader__cartCount")
@@ -37,8 +43,10 @@ public class WebProductDetailPage extends WebBasePage implements ProductDetailPa
     List<WebElement> sizeList;
 
     public void selectSize(String key) {
-        ConfigReader.setConfigValue(key, sizeList.get(0).getText());
-        javascriptExecutorClick(sizeList.get(0));
+        if(!sizeList.isEmpty()) {
+            ConfigReader.setConfigValue(key, sizeList.get(0).getText());
+            javascriptExecutorClick(sizeList.get(0));
+        }
     }
 
     @FindBy(className = "ProductDescriptionPage__moreProductInfoHead")

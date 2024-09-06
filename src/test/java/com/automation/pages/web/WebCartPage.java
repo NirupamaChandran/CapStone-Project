@@ -101,6 +101,12 @@ public class WebCartPage extends WebBasePage implements CartPage {
         return expectedTotal == actualTotal;
     }
 
+    @FindBy(css = ".DesktopHeader__logoHolder")
+    WebElement tatacliqLogo;
+    public void clickLogo(){
+        tatacliqLogo.click();
+    }
+
     @FindBy(className = "Coupon__headingText")
     WebElement couponMenu;
     public void clickCheckForCoupons(){
