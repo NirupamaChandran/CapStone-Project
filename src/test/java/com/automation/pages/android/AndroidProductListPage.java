@@ -146,14 +146,21 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     }
 
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"com.tul.tatacliq:id/relativeLayout\"]")
+    List<WebElement> productContainer;
+    int containerWidth;
+    Dimension containerDimension;
     @Override
     public void changeView() {
+        containerDimension = productContainer.get(0).getSize();
+        containerWidth=containerDimension.getWidth();
         viewButton.click();
     }
 
     @Override
     public boolean isViewChanged() {
-        return false;
+        containerDimension = productContainer.get(0).getSize();
+        return containerWidth != containerDimension.getWidth();
     }
 
     @FindBy(xpath = "//android.widget.TextView[@text='Similar Products']")
