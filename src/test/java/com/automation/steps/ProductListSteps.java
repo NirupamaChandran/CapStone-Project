@@ -133,4 +133,30 @@ public class ProductListSteps {
     public void userClicksOnTheProduct() {
 //        productListPage.clickProduct();
     }
+
+
+    @When("user scroll up to filter by colour option")
+    public void userScrollUpToFilterByColourOption() {
+        productListPage.scrollUpToFilterByColor();
+    }
+
+    @And("swipe until last color")
+    public void swipeUntilLastColor() {
+        productListPage.swipeUntilLastColor();
+    }
+
+    @And("select last color from the list")
+    public void selectLastColorFromTheList() {
+        productListPage.selectLastColor();
+    }
+
+    @And("click view products")
+    public void clickViewProducts() {
+        productListPage.clickViewProducts();
+    }
+
+    @Then("verify filter by colour is applied")
+    public void verifyFilterByColourIsApplied() {
+        Assert.assertTrue(productListPage.isFilterByColorApplied());
+    }
 }

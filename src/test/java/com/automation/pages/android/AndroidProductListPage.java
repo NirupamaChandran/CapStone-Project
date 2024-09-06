@@ -263,4 +263,59 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
         }while(!isPresent(giveFeedback));
         return true;
     }
+
+
+    @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.tul.tatacliq:id/ivColor']")
+    WebElement colors;
+    @Override
+    public void scrollUpToFilterByColor(){
+
+        Dimension dimension = driver.manage().window().getSize();
+        int width  = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        while (!isPresent(colors)){
+            scrollOrSwipe(width/2, height/2, width/2 , 0);
+        }
+    }
+
+
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/tvMore']")
+    WebElement moreBtn;
+    @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.tul.tatacliq:id/rvFilterValues']")
+    WebElement filterDiv;
+    @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.tul.tatacliq:id/rvFilterValues']/android.widget.LinearLayout")
+    List<WebElement> coloursList;
+    @Override
+    public void swipeUntilLastColor(){
+
+        int startX =coloursList.get(coloursList.size()-1).getLocation().getX();
+        int startY =coloursList.get(coloursList.size()-1).getLocation().getY();
+
+        while (!isPresent(moreBtn)){
+            scrollOrSwipe(startX,startY,startX-900,startY);
+        }
+    }
+
+
+    @Override
+    public void selectLastColor(){
+        ConfigReader.setConfigValue("filter.color",coloursList.get(coloursList.size()-1).getText());
+        coloursList.get(coloursList.size()-1).click();
+    }
+
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/btnViewProducts']")
+    WebElement viewProductsBtn;
+    @Override
+    public void clickViewProducts(){
+        viewProductsBtn.click();
+    }
+
+    @FindBy(id = "com.tul.tatacliq:id/textViewProductName")
+    List<WebElement> productTitles;
+    @Override
+    public boolean isFilterByColorApplied(){
+        String color = ConfigReader.getConfigValue("filter.color");
+        return productTitles.get(0).getText().contains(color);
+    }
 }

@@ -9,7 +9,9 @@ import java.util.List;
 
 public class AndroidHomePage extends AndroidBasePage implements HomePage {
 
-    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[1]")
+//    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[1]")
+//    WebElement goToHomePage;
+    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[2]")
     WebElement goToHomePage;
     public void openWebsite(){
         goToHomePage.click();
