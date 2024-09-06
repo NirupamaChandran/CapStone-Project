@@ -188,4 +188,9 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         }
         return true;
     }
+
+    @Override
+    public void clickLogo() {
+
+    }
 }

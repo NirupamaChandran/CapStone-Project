@@ -82,4 +82,8 @@ public class CartSteps {
         cartPage.isCouponApplied();
     }
 
+    @When("user clicks tatacliq logo")
+    public void userClicksTatacliqLogo() {
+        cartPage.clickLogo();
+    }
 }

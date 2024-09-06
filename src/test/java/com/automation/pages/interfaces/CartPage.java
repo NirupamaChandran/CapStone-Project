@@ -24,4 +24,6 @@ public interface CartPage {
     void applyCoupon();
 
     boolean isCouponApplied();
+
+    void clickLogo();
 }

@@ -41,6 +41,18 @@ Feature: Validate cart page functionalities
     And verify the total amount is correct
     When user increase quantity of the item
     And verify the total amount is correct
+    When user clicks tatacliq logo
+    Then verify user is in home page
+    When user search an item "search.item" in search bar
+    Then verify "search.item" listing page is displayed
+    When user clicks on the first product
+    Then verify whether product detail page is displayed
+    And user selects size "item.size" of the product
+    And user clicks add to cart button
+    Then verify success message is displayed
+    And user click cart icon
+    Then verify user is on cart page
+    And verify the total amount is correct
 
   @web@mobile
   Scenario: Verify user can apply coupon
