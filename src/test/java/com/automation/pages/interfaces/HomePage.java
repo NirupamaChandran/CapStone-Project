@@ -11,7 +11,7 @@ public interface HomePage {
 
     void chooseBrand();
 
-    void searchCategory();
+    void searchCategory(String categoryItem,String categoryType);
 
     void searchItem(String configValue);
 

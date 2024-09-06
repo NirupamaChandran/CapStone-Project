@@ -36,9 +36,9 @@ public class HomeSteps {
         homePage.chooseBrand();
     }
 
-    @When("user select Shirts from Men's fashion in Categories")
-    public void userSelectShirtsFromMensSFashionInCategories() {
-        homePage.searchCategory();
+    @When("user select {string} from Men's fashion in {string}")
+    public void userSelectShirtsFromMensSFashionInCategories(String categoryItem,String categoryType) {
+        homePage.searchCategory(categoryItem,categoryType);
     }
 
     @When("user search an item {string} in search bar")

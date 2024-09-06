@@ -3,6 +3,7 @@ package com.automation.pages.web;
 
 import com.automation.pages.interfaces.HomePage;
 import com.automation.utils.ConfigReader;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -61,19 +62,19 @@ public class WebHomePage extends WebBasePage implements HomePage {
     }
 
 
-    @FindBy(xpath = "//div[@class='DesktopHeader__categoryAndBrand' and text()='Categories']")
-    WebElement categoryMenu;
+//    @FindBy(xpath = "//div[@class='DesktopHeader__categoryAndBrand' and text()='Categories']")
+    String categoryMenu="//div[@class='DesktopHeader__categoryAndBrand' and text()='%s']";
     @FindBy(xpath = "//div[@class='DesktopHeader__categoryDetailsValueWithArrow']/following-sibling::div[1]")
     WebElement mensFashionOption;
-    @FindBy(xpath = "//a[text()='T-shirts']")
-    WebElement tShirtsLink;
+//    @FindBy(xpath = "//a[text()='T-shirts']")
+    String tShirtsLink="//a[text()='%s']";
 
     @Override
-    public void searchCategory() {
+    public void searchCategory(String categoryItem,String categoryType) {
         Actions actions = new Actions(driver);
-        actions.moveToElement(categoryMenu).pause(1000).build().perform();
+        actions.moveToElement(driver.findElement(By.xpath(String.format(categoryMenu,categoryType)))).pause(1000).build().perform();
         actions.moveToElement(mensFashionOption).pause(1000).build().perform();
-        actions.click(tShirtsLink).build().perform();
+        actions.click(driver.findElement(By.xpath(String.format(tShirtsLink,categoryItem)))).build().perform();
     }
 
 

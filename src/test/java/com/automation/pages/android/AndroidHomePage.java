@@ -1,6 +1,7 @@
 package com.automation.pages.android;
 
 import com.automation.pages.interfaces.HomePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -50,20 +51,20 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
 
     }
 
-    @FindBy(xpath = "//android.widget.FrameLayout[@content-desc='Categories']")
-    WebElement categoryBtn;
+//    @FindBy(xpath = "//android.widget.FrameLayout[@content-desc='Categories']")
+    String categoryBtn="//android.widget.FrameLayout[@content-desc='%s']";
     @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.tul.tatacliq:id/cardCategoryItem']")
     List<WebElement> categoryList;
     @FindBy(xpath = "//android.widget.TextView[@text='Casual Wear']")
     WebElement casualWears;
-    @FindBy(xpath = "//android.widget.TextView[@text='T-shirts']/preceding-sibling::android.widget.FrameLayout")
-    WebElement tShirtBtn;
+//    @FindBy(xpath = "//android.widget.TextView[@text='T-shirts']/preceding-sibling::android.widget.FrameLayout")
+    String tShirtBtn="//android.widget.TextView[@text='%s']/preceding-sibling::android.widget.FrameLayout";
     @Override
-    public void searchCategory() {
-        categoryBtn.click();
+    public void searchCategory(String categoryItem,String categoryType) {
+        driver.findElement(By.xpath(String.format(categoryBtn,categoryType))).click();
         categoryList.get(1).click();
         casualWears.click();
-        tShirtBtn.click();
+        driver.findElement(By.xpath(String.format(tShirtBtn,categoryItem))).click();
     }
 
     @FindBy(xpath = "//android.widget.AutoCompleteTextView[@resource-id='android:id/search_src_text']")

@@ -35,7 +35,7 @@ Feature: Validate cart page functionalities
     When user clicks on remove button
     Then verify the item is removed from the cart
 
-  @web@mobile
+  @web
   Scenario: Verify the total amount in cart page
     Then verify cart contain the correct item
     And verify the total amount is correct
@@ -52,6 +52,13 @@ Feature: Validate cart page functionalities
     Then verify success message is displayed
     And user click cart icon
     Then verify user is on cart page
+    And verify the total amount is correct
+
+  @mobile
+  Scenario: Verify the total amount in cart page in android
+    Then verify cart contain the correct item
+    And verify the total amount is correct
+    When user increase quantity of the item
     And verify the total amount is correct
 
   @web@mobile
