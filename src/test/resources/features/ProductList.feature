@@ -4,7 +4,7 @@ Feature: Validate product list page functionalities
     Given user opens website
     Then verify user is on homepage
 
-  @web
+  @web@mobile
   Scenario: Verify user can give feedback
     When user search an item "search.item" in search bar
     Then verify "search.item" listing page is displayed

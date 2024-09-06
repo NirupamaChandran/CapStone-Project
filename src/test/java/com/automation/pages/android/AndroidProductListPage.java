@@ -170,29 +170,57 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
         return similarProductHeader.isDisplayed();
     }
 
+
+    @FindBy(id = "com.tul.tatacliq:id/appCompatTextView3")
+    WebElement feedbackText;
+    @FindBy(id = "com.tul.tatacliq:id/appCompatTextView2")
+    WebElement feedbackBtn;
     @Override
     public void clickFeedBack() {
 
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        while (!isPresent(feedbackText)){
+            scrollOrSwipe(width/2, height/2, width/2, 0);
+        }
+
+        feedbackBtn.click();
+
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/toolbar_title")
+    WebElement feedbackForm;
     @Override
     public boolean isFeedBackPageDisplayed() {
-        return false;
+        return feedbackForm.isDisplayed();
     }
 
+    @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.tul.tatacliq:id/iv_emoji_3']")
+    List<WebElement> feedBackSmiley;
     @Override
     public void enterFeedBack() {
-
+        for (WebElement smiley : feedBackSmiley) {
+            smiley.click();
+        }
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/comments_textbox")
+    WebElement textInput;
+    @FindBy(id = "com.tul.tatacliq:id/tv_submit")
+    WebElement submitBtn;
     @Override
     public void submitFeedBack() {
-
+        textInput.sendKeys(ConfigReader.getConfigValue("text"));
+        submitBtn.click();
     }
 
+    @FindBy(id = "com.tul.tatacliq:id/textView3")
+    WebElement successMsg;
     @Override
     public String successMsg() {
-        return "";
+        return successMsg.getText();
     }
 
     @FindBy(xpath = "//android.widget.TextView[@text='Price Low to High']")

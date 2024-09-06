@@ -236,6 +236,7 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
     @FindBy(className = "feedbackExperienceSubmitMessage__thankyouText")
     WebElement successMsg;
 
+    @Override
     public String successMsg() {
         return successMsg.getText();
     }
