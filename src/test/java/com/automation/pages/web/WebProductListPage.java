@@ -253,6 +253,31 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
         return true;
     }
 
+    @Override
+    public void scrollUpToFilterByColor() {
+
+    }
+
+    @Override
+    public void swipeUntilLastColor() {
+
+    }
+
+    @Override
+    public void selectLastColor() {
+
+    }
+
+    @Override
+    public void clickViewProducts() {
+
+    }
+
+    @Override
+    public boolean isFilterByColorApplied() {
+        return false;
+    }
+
 
     @FindBy(css = ".ProductModule__base")
     List<WebElement> productCardList;

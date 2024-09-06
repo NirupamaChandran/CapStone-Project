@@ -44,4 +44,14 @@ public interface ProductListPage {
     boolean verifyImage();
 
     boolean isDiscountFilterApplied();
+
+    void scrollUpToFilterByColor();
+
+    void swipeUntilLastColor();
+
+    void selectLastColor();
+
+    void clickViewProducts();
+
+    boolean isFilterByColorApplied();
 }
