@@ -82,9 +82,14 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
     @FindBy(className = "SelectBoxDesktop__hideSelect")
     WebElement sortByBtn;
 
-    public void sortPriceHighToLow() {
+    public void selectSortType(String sortType) {
         Select sortBy = new Select(sortByBtn);
-        sortBy.selectByValue("price-desc");
+        if(sortType.equals("Price High to Low")) {
+            sortBy.selectByValue("price-desc");
+        }
+        else {
+            sortBy.selectByValue("price-asc");
+        }
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -93,15 +98,17 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
     }
 
 
-    public void sortPriceLowToHigh() {
-        Select sortBy = new Select(sortByBtn);
-        sortBy.selectByValue("price-asc");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void sortPriceLowToHigh(String sortType) {
+//        Select sortBy = new Select(sortByBtn);
+//
+//
+//        }
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @FindBy(xpath = "//div[@class='ProductDescription__discount ProductDescription__priceHolder']/h3")
     List<WebElement> priceList;

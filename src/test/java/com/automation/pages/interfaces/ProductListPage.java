@@ -11,7 +11,7 @@ public interface ProductListPage {
 
     boolean isItemHeadingDisplayed(String configValue);
 
-    void sortPriceHighToLow();
+    void selectSortType(String value);
 
     boolean isPriceHighToLowSorted();
 
@@ -35,7 +35,7 @@ public interface ProductListPage {
 
     String successMsg();
 
-    void sortPriceLowToHigh();
+//    void sortPriceLowToHigh();
 
     boolean isPriceLowToHighSorted();
 

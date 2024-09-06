@@ -54,23 +54,23 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     }
 
 
-    @FindBy(xpath = "//android.widget.TextView[@text='Price High to Low']")
-    WebElement highToLow;
+//    @FindBy(xpath = "//android.widget.TextView[@text='Price High to Low']")
+    String sortOption ="//android.widget.TextView[@text='%s']";
 
     @Override
-    public void sortPriceHighToLow() {
+    public void selectSortType(String sortType) {
         sortButton.click();
-        highToLow.click();
+        driver.findElement(By.xpath(String.format(sortOption,sortType))).click();
     }
 
 
-    @FindBy(id = "com.tul.tatacliq:id/emptyText")
-    WebElement productListEnd;
+
     @FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.tul.tatacliq:id/linearLayoutPriceInfo']/android.widget.TextView[1]")
     List<WebElement> priceList;
 
     @Override
     public boolean isPriceHighToLowSorted() {
+
         int i = 0;
 
         //Scroll Logic
@@ -223,13 +223,13 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
         return successMsg.getText();
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@text='Price Low to High']")
-    WebElement lowToHigh;
-    @Override
-    public void sortPriceLowToHigh() {
-        sortButton.click();
-        lowToHigh.click();
-    }
+//    @FindBy(xpath = "//android.widget.TextView[@text='Price Low to High']")
+//    WebElement lowToHigh;
+//    @Override
+//    public void sortPriceLowToHigh() {
+//        sortButton.click();
+//        lowToHigh.click();
+//    }
 
 
     @Override
