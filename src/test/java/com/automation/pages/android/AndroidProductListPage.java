@@ -17,6 +17,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     WebElement sortButton;
     @FindBy(id = "com.tul.tatacliq:id/textViewRefine")
     WebElement filterButton;
+
     @Override
     public boolean isProductListPageDisplayed() {
         return isDisplayed(sortButton) && isDisplayed(filterButton);
@@ -32,6 +33,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     List<WebElement> titleList;
     @FindBy(id = "com.tul.tatacliq:id/llGridListView")
     WebElement viewButton;
+
     @Override
     public void clickFirstProduct() {
         if (isDisplayed(viewButton)) {
@@ -48,21 +50,21 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @FindBy(id = "com.tul.tatacliq:id/toolbar_icon_title")
     WebElement heading;
+
     @Override
     public boolean isItemHeadingDisplayed(String configValue) {
         return isDisplayed(heading);
     }
 
 
-//    @FindBy(xpath = "//android.widget.TextView[@text='Price High to Low']")
-    String sortOption ="//android.widget.TextView[@text='%s']";
+    //    @FindBy(xpath = "//android.widget.TextView[@text='Price High to Low']")
+    String sortOption = "//android.widget.TextView[@text='%s']";
 
     @Override
     public void selectSortType(String sortType) {
         sortButton.click();
-        driver.findElement(By.xpath(String.format(sortOption,sortType))).click();
+        driver.findElement(By.xpath(String.format(sortOption, sortType))).click();
     }
-
 
 
     @FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.tul.tatacliq:id/linearLayoutPriceInfo']/android.widget.TextView[1]")
@@ -106,16 +108,16 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     WebElement searchResult;
     @FindBy(id = "com.tul.tatacliq:id/txtShowResults")
     WebElement showResult;
+
     @Override
     public void addBrandFilter(String filter, String filterType) {
         filterButton.click();
-        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.tul.tatacliq:id/txtFilterKey' and @text='"+filterType+"']")).click();
-        if(isDisplayed(brandInput)) {
+        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.tul.tatacliq:id/txtFilterKey' and @text='" + filterType + "']")).click();
+        if (isDisplayed(brandInput)) {
             brandInput.sendKeys(filter);
             searchResult.click();
-        }
-        else{
-            driver.findElement(By.xpath("//android.widget.TextView[@text='"+filter+"']")).click();
+        } else {
+            driver.findElement(By.xpath("//android.widget.TextView[@text='" + filter + "']")).click();
         }
         showResult.click();
     }
@@ -124,36 +126,38 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     WebElement giveFeedback;
     @FindBy(xpath = "//android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")
     List<WebElement> brandHeading;
+
     @Override
     public boolean isBrandFilterApplied(String filterBrand) {
         Dimension dimension = driver.manage().window().getSize();
         int width = dimension.getWidth();
         int height = dimension.getHeight();
-        do{
+        do {
             List<String> brandList = new ArrayList<>();
-            for(WebElement brand : brandHeading){
+            for (WebElement brand : brandHeading) {
                 brandList.add(brand.getText());
             }
-            for(String brandName : brandList){
-                if(!brandName.equals(filterBrand)){
+            for (String brandName : brandList) {
+                if (!brandName.equals(filterBrand)) {
                     return false;
                 }
             }
             scrollOrSwipe(width / 2, height / 2, width / 2, 0);
 
-        }while(!isPresent(giveFeedback));
+        } while (!isPresent(giveFeedback));
         return true;
 
     }
 
-    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"com.tul.tatacliq:id/relativeLayout\"]")
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.tul.tatacliq:id/relativeLayout']")
     List<WebElement> productContainer;
     int containerWidth;
     Dimension containerDimension;
+
     @Override
     public void changeView() {
         containerDimension = productContainer.get(0).getSize();
-        containerWidth=containerDimension.getWidth();
+        containerWidth = containerDimension.getWidth();
         viewButton.click();
     }
 
@@ -165,6 +169,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @FindBy(xpath = "//android.widget.TextView[@text='Similar Products']")
     WebElement similarProductHeader;
+
     @Override
     public boolean isSimilarProductsDisplayed() {
         return similarProductHeader.isDisplayed();
@@ -175,6 +180,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     WebElement feedbackText;
     @FindBy(id = "com.tul.tatacliq:id/appCompatTextView2")
     WebElement feedbackBtn;
+
     @Override
     public void clickFeedBack() {
 
@@ -182,8 +188,8 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
         int width = dimension.getWidth();
         int height = dimension.getHeight();
 
-        while (!isPresent(feedbackText)){
-            scrollOrSwipe(width/2, height/2, width/2, 0);
+        while (!isPresent(feedbackText)) {
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
         }
 
         feedbackBtn.click();
@@ -192,6 +198,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @FindBy(id = "com.tul.tatacliq:id/toolbar_title")
     WebElement feedbackForm;
+
     @Override
     public boolean isFeedBackPageDisplayed() {
         return feedbackForm.isDisplayed();
@@ -199,6 +206,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.tul.tatacliq:id/iv_emoji_3']")
     List<WebElement> feedBackSmiley;
+
     @Override
     public void enterFeedBack() {
         for (WebElement smiley : feedBackSmiley) {
@@ -210,6 +218,7 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     WebElement textInput;
     @FindBy(id = "com.tul.tatacliq:id/tv_submit")
     WebElement submitBtn;
+
     @Override
     public void submitFeedBack() {
         textInput.sendKeys(ConfigReader.getConfigValue("text"));
@@ -218,18 +227,11 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
 
     @FindBy(id = "com.tul.tatacliq:id/textView3")
     WebElement successMsg;
+
     @Override
     public String successMsg() {
         return successMsg.getText();
     }
-
-//    @FindBy(xpath = "//android.widget.TextView[@text='Price Low to High']")
-//    WebElement lowToHigh;
-//    @Override
-//    public void sortPriceLowToHigh() {
-//        sortButton.click();
-//        lowToHigh.click();
-//    }
 
 
     @Override
@@ -273,8 +275,9 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
         return false;
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.tul.tatacliq:id/text_discount\"]")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/text_discount']")
     List<WebElement> discountList;
+
     @Override
     public boolean isDiscountFilterApplied() {
         Dimension dimension = driver.manage().window().getSize();
@@ -288,22 +291,23 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
                 }
             }
             scrollOrSwipe(width / 2, height / 2, width / 2, 0);
-        }while(!isPresent(giveFeedback));
+        } while (!isPresent(giveFeedback));
         return true;
     }
 
 
     @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.tul.tatacliq:id/ivColor']")
     WebElement colors;
+
     @Override
-    public void scrollUpToFilterByColor(){
+    public void scrollUpToFilterByColor() {
 
         Dimension dimension = driver.manage().window().getSize();
-        int width  = dimension.getWidth();
+        int width = dimension.getWidth();
         int height = dimension.getHeight();
 
-        while (!isPresent(colors)){
-            scrollOrSwipe(width/2, height/2, width/2 , 0);
+        while (!isPresent(colors)) {
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
         }
     }
 
@@ -314,35 +318,38 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
     WebElement filterDiv;
     @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.tul.tatacliq:id/rvFilterValues']/android.widget.LinearLayout")
     List<WebElement> coloursList;
+
     @Override
-    public void swipeUntilLastColor(){
+    public void swipeUntilLastColor() {
 
-        int startX =coloursList.get(coloursList.size()-1).getLocation().getX();
-        int startY =coloursList.get(coloursList.size()-1).getLocation().getY();
+        int startX = coloursList.get(coloursList.size() - 1).getLocation().getX();
+        int startY = coloursList.get(coloursList.size() - 1).getLocation().getY();
 
-        while (!isPresent(moreBtn)){
-            scrollOrSwipe(startX,startY,startX-900,startY);
+        while (!isPresent(moreBtn)) {
+            scrollOrSwipe(startX, startY, startX - 900, startY);
         }
     }
 
 
     @Override
-    public void selectLastColor(){
-        ConfigReader.setConfigValue("filter.color",coloursList.get(coloursList.size()-1).getText());
-        coloursList.get(coloursList.size()-1).click();
+    public void selectLastColor() {
+        ConfigReader.setConfigValue("filter.color", coloursList.get(coloursList.size() - 1).getText());
+        coloursList.get(coloursList.size() - 1).click();
     }
 
     @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/btnViewProducts']")
     WebElement viewProductsBtn;
+
     @Override
-    public void clickViewProducts(){
+    public void clickViewProducts() {
         viewProductsBtn.click();
     }
 
     @FindBy(id = "com.tul.tatacliq:id/textViewProductName")
     List<WebElement> productTitles;
+
     @Override
-    public boolean isFilterByColorApplied(){
+    public boolean isFilterByColorApplied() {
         String color = ConfigReader.getConfigValue("filter.color");
         return productTitles.get(0).getText().contains(color);
     }

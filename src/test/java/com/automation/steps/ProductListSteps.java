@@ -45,7 +45,7 @@ public class ProductListSteps {
     }
 
     @And("user sort {string}")
-    public void userSortPriceHighToLow(String sortType) throws InterruptedException {
+    public void userSelectSortType(String sortType) throws InterruptedException {
         productListPage.selectSortType(sortType);
     }
 
@@ -103,11 +103,6 @@ public class ProductListSteps {
     public void verifyIsDisplayed(String text) {
         Assert.assertEquals(text, productListPage.successMsg());
     }
-
-//    @And("user sort price low to high")
-//    public void userSortPriceLowToHigh() throws InterruptedException {
-//        productListPage.sortPriceLowToHigh();
-//    }
 
     @Then("verify whether product list is sorted low to high")
     public void verifyWhetherProductListIsSortedLowToHigh() {

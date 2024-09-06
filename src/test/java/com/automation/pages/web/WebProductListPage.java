@@ -96,19 +96,7 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
             throw new RuntimeException(e);
         }
     }
-
-
-//    public void sortPriceLowToHigh(String sortType) {
-//        Select sortBy = new Select(sortByBtn);
-//
-//
-//        }
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    
 
     @FindBy(xpath = "//div[@class='ProductDescription__discount ProductDescription__priceHolder']/h3")
     List<WebElement> priceList;

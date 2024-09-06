@@ -64,7 +64,7 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         return true;
     }
 
-    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title'" + "]")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/toolbar_title']")
     WebElement myBagHeader;
     @Override
     public boolean isCartPageDisplayed() {
@@ -78,7 +78,7 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         removeButton.click();
     }
 
-    @FindBy(xpath = "//android.widget.LinearLayout[@resource-id=\"com.tul.tatacliq:id/emptyCartLayoutNew\"]/android.widget.TextView[1]")
+    @FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.tul.tatacliq:id/emptyCartLayoutNew']/android.widget.TextView[1]")
     WebElement cartMessage;
     @Override
     public boolean isItemRemoved() {
@@ -119,7 +119,6 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         double expectedTotal = 0;
         for (WebElement price : productPrice) {
             double itemPrice = Double.parseDouble(price.getText().substring(1));
-            System.out.println(itemPrice+"item price==========");
             expectedTotal += itemPrice;
         }
 
@@ -131,8 +130,6 @@ public class AndroidCartPage extends AndroidBasePage implements CartPage {
         expectedTotal += processingFee;
         actualTotal = Double.parseDouble(totalPayable.getText().substring(1));
         ConfigReader.setConfigValue("total.price", String.valueOf(actualTotal));
-        System.out.println(expectedTotal + "================================");
-        System.out.println(actualTotal + "================================");
         return expectedTotal == actualTotal;
 
     }
