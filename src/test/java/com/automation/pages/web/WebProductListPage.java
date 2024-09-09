@@ -164,7 +164,7 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
         viewChangeButton.click();
     }
 
-    @FindBy(xpath = "//*[@id='grid-wrapper_desktop']/div/div/div/div/div[2]/div[1]")
+    @FindBy(xpath = "(//div[@class='Grid__element'])[1]")
     WebElement viewElement;
 
     public boolean isViewChanged() {
