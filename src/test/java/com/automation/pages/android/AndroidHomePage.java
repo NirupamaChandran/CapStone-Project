@@ -67,6 +67,16 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
         driver.findElement(By.xpath(String.format(tShirtBtn,categoryItem))).click();
     }
 
+    @Override
+    public void clickAboutUs() {
+
+    }
+
+    @Override
+    public boolean isAboutUsDisplayed() {
+    return false;
+    }
+
     @FindBy(xpath = "//android.widget.AutoCompleteTextView[@resource-id='android:id/search_src_text']")
     WebElement searchInput;
     @Override
@@ -91,6 +101,16 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
 
     @Override
     public boolean isLuxuryPageTitleDisplayed() {
+        return false;
+    }
+
+    @Override
+    public void clickContactUS() {
+
+    }
+
+    @Override
+    public boolean isContactUsDisplayed() {
         return false;
     }
 }

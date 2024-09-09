@@ -44,7 +44,7 @@ public class ProductListSteps {
         Assert.assertTrue(productListPage.isProductListPageDisplayed());
     }
 
-    @And("user sort {string}")
+    @And("user sort as per {string}")
     public void userSelectSortType(String sortType) throws InterruptedException {
         productListPage.selectSortType(sortType);
     }
@@ -153,5 +153,10 @@ public class ProductListSteps {
     @Then("verify filter by colour is applied")
     public void verifyFilterByColourIsApplied() {
         Assert.assertTrue(productListPage.isFilterByColorApplied());
+    }
+
+    @Then("verify whether product is sorted as per discount")
+    public void verifyWhetherProductIsSortedAsPerDiscount() {
+        Assert.assertTrue(productListPage.isDiscountSorted());
     }
 }

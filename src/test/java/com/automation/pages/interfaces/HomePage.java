@@ -13,6 +13,10 @@ public interface HomePage {
 
     void searchCategory(String categoryItem,String categoryType);
 
+    void clickAboutUs();
+
+    boolean isAboutUsDisplayed();
+
     void searchItem(String configValue);
 
     boolean isDisplayed(WebElement element);
@@ -20,4 +24,8 @@ public interface HomePage {
     void clickTataLuxury();
 
     boolean isLuxuryPageTitleDisplayed();
+
+    void clickContactUS();
+
+    boolean isContactUsDisplayed();
 }

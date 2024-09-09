@@ -84,19 +84,14 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
 
     public void selectSortType(String sortType) {
         Select sortBy = new Select(sortByBtn);
-        if(sortType.equals("Price High to Low")) {
-            sortBy.selectByValue("price-desc");
-        }
-        else {
-            sortBy.selectByValue("price-asc");
-        }
+        sortBy.selectByVisibleText(sortType);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
-    
+
 
     @FindBy(xpath = "//div[@class='ProductDescription__discount ProductDescription__priceHolder']/h3")
     List<WebElement> priceList;
@@ -169,7 +164,7 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
         viewChangeButton.click();
     }
 
-    @FindBy(xpath = "//*[@id=\"grid-wrapper_desktop\"]/div/div/div/div/div[2]/div[1]")
+    @FindBy(xpath = "//*[@id='grid-wrapper_desktop']/div/div/div/div/div[2]/div[1]")
     WebElement viewElement;
 
     public boolean isViewChanged() {
@@ -293,5 +288,17 @@ public class WebProductListPage extends WebBasePage implements ProductListPage {
     public boolean verifyImage() {
         String link2 = imageList.get(0).getAttribute("src");
         return (!link1.equals(link2));
+    }
+
+    public boolean isDiscountSorted(){
+        int max = Integer.MAX_VALUE;
+        for (WebElement discount : discountList) {
+            int value = Integer.parseInt(discount.getText().substring(0, 2));
+            if (value > max) {
+                return false;
+            }
+            max = value;
+        }
+        return true;
     }
 }

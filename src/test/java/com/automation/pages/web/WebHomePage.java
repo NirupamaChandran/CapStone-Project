@@ -77,6 +77,19 @@ public class WebHomePage extends WebBasePage implements HomePage {
         actions.click(driver.findElement(By.xpath(String.format(tShirtsLink,categoryItem)))).build().perform();
     }
 
+    @FindBy(xpath = "//a[normalize-space(text())='About Us']")
+    WebElement aboutUs;
+    @Override
+    public void clickAboutUs() {
+        aboutUs.click();
+    }
+
+    @FindBy(xpath = "//p[normalize-space(text())='Tata CLiQ website – About us']")
+    WebElement aboutUsHeader;
+    @Override
+    public boolean isAboutUsDisplayed() {
+        return isDisplayed(aboutUsHeader);
+    }
 
     @FindBy(id = "search-text-input")
     WebElement searchBox;
@@ -114,6 +127,19 @@ public class WebHomePage extends WebBasePage implements HomePage {
     WebElement heading;
     public boolean isLuxuryPageTitleDisplayed(){
         return heading.isDisplayed();
+    }
+
+    @FindBy(xpath = "//a[normalize-space(text())='Contact Us']")
+    WebElement contactUs;
+    @Override
+    public void clickContactUS() {
+        contactUs.click();
+    }
+    @FindBy(xpath = "//h2[text()='Contact Us']")
+    WebElement contactUsHeading;
+    @Override
+    public boolean isContactUsDisplayed() {
+        return isDisplayed(contactUsHeading);
     }
 
 }

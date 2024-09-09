@@ -275,6 +275,26 @@ public class AndroidProductListPage extends AndroidBasePage implements ProductLi
         return false;
     }
 
+    @Override
+    public boolean isDiscountSorted() {
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = (int)(dimension.getHeight()*0.75);
+        int max = Integer.MAX_VALUE;
+        do {
+            for (WebElement discount : discountList) {
+                int value = Integer.parseInt(discount.getText().substring(0, 2));
+                System.out.println(value);
+                if (value > max) {
+                    return false;
+                }
+                max = value;
+            }
+            scrollOrSwipe(width / 2, height, width / 2, 0);
+        } while (!isPresent(giveFeedback));
+        return true;
+    }
+
     @FindBy(xpath = "//android.widget.TextView[@resource-id='com.tul.tatacliq:id/text_discount']")
     List<WebElement> discountList;
 

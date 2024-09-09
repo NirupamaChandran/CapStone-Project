@@ -8,10 +8,15 @@ Feature: Validate sorting functionality
 
   @web@mobile
   Scenario: Verify user can sort price high to low
-    And user sort "Price High to Low"
+    And user sort as per "Price High to Low"
     Then verify whether product list is sorted high to low
 
   @web@mobile
   Scenario: Verify user can sort price low to high
-    And user sort "Price Low to High"
+    And user sort as per "Price Low to High"
     Then verify whether product list is sorted low to high
+
+  @web@mobile
+  Scenario: Verify user can sort items as per discount
+    And user sort as per "Discounts"
+    Then verify whether product is sorted as per discount

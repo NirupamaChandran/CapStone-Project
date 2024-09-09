@@ -21,6 +21,7 @@ public class WebBasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
+
     public void javascriptExecutorClick(WebElement element) {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("arguments[0].click();", element);

@@ -4,6 +4,7 @@ import com.automation.pages.interfaces.HomePage;
 import com.automation.pages.android.AndroidHomePage;
 import com.automation.pages.web.WebHomePage;
 import com.automation.utils.ConfigReader;
+import com.automation.utils.DriverManager;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
@@ -64,5 +65,26 @@ public class HomeSteps {
     @Then("verify tata cliq luxury site is displayed")
     public void verifyTataCliqLuxurySiteIsDisplayed() {
         Assert.assertTrue(homePage.isLuxuryPageTitleDisplayed());
+    }
+
+    @And("user clicks on about us link")
+    public void userClicksOnAboutUsLink() {
+        homePage.clickAboutUs();
+    }
+
+    @Then("verify whether about us page is displayed")
+    public void verifyWhetherAboutUsPageIsDisplayed() {
+        Assert.assertTrue(homePage.isAboutUsDisplayed());
+        DriverManager.getDriver().navigate().back();
+    }
+
+    @When("user clicks on contact us")
+    public void userClicksOnContactUs() {
+        homePage.clickContactUS();
+    }
+
+    @Then("verify contact us page is displayed")
+    public void verifyContactUsPageIsDisplayed() {
+        Assert.assertTrue(homePage.isContactUsDisplayed());
     }
 }

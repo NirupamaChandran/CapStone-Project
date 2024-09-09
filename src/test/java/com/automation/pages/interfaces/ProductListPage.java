@@ -43,6 +43,8 @@ public interface ProductListPage {
 
     boolean verifyImage();
 
+    boolean isDiscountSorted();
+
     boolean isDiscountFilterApplied();
 
     void scrollUpToFilterByColor();
